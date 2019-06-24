@@ -24,8 +24,7 @@ const ServiceNow = new sn('dev49606', 'admin', '10Service@321');
 //     API for connection from servicenow ticket//
 ///////////////////////////////////////////
 app.post('/chatops', function (req, response) { 
-        if (err) return console.log(err);
-        //console.log(credentials)    
+     
 		 response.setHeader('Content-Type', 'application/json');
 		console.log("Display name ", req.body.queryResult.intent.displayName);
         switch (req.body.queryResult.intent.displayName) {				
