@@ -118,7 +118,7 @@ app.post('/chatops', function (req, response) {
             ];
 
             ServiceNow.getTableData(fieldsdata, filtersdata, 'incident', res => {
-                response.send(JSON.stringify({ "fulfillmentText": "Ticket number: " + res.number}));
+                response.send(JSON.stringify({ "fulfillmentText": "Ticket number: " + res[0].number}));
                 for (var i = 0; i < res.length; i++) {
                  console.log("data is here", res[i].number +"  && urgency is "+ res[i].urgency);
                  response.send(JSON.stringify({ "fulfillmentText": "Ticket number: " + res[i].number + " and urgency " + res[i].urgency +"/ n"}));
