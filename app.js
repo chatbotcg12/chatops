@@ -110,7 +110,6 @@ app.post('/chatops', function (req, response) {
                 'assigned_to',
                 'urgency'
             ];
-
             const filtersdata = [
                 'priority=1',
                 'risk=High',
@@ -119,17 +118,16 @@ app.post('/chatops', function (req, response) {
             ];
 
             ServiceNow.getTableData(fieldsdata, filtersdata, 'incident', res => {
-                console.log("one");
-                console.log("hiii", res);
-                console.log("hiii", res[0].number);
-                for (var i = 0; i < res; i++) {
+                
+                for (var i = 0; i < res.length; i++) {
 
+                 console.log("data is here", res[i].number +"  && urgency is"+ res[i].urgency);
                 }
 
             });
+            break;
         /**update ticket urgency in service now */
         case "updateticketurgency":
-            console.log("hiii")
             var geturgency = (req.body.queryResult.parameters.urgency).toString();
             console.log("urgency",geturgency );
             if (geturgency == "low" || geturgency == "Low") {
@@ -153,9 +151,6 @@ app.post('/chatops', function (req, response) {
                 response.send(JSON.stringify({ "fulfillmentText": "Your ticket number: " + ticketnuber + " is updated successfully with urgency " + geturgency }));
             }); 
             break;
-
-
-
 
     }
 });
